@@ -9,7 +9,7 @@ var frontView = express.Router();
 
 // Login
 frontView.get('/login', (req, res) => {
-	res.render('login');
+	res.render('index');
 });
 
 passport.use(new LocalStrategy(
@@ -49,7 +49,7 @@ function ensureAuthenticated(req, res, next){
 
 // Get Homepage
 frontView.get('/', ensureAuthenticated, function(req, res){
-	res.render('home');
+	res.render('home', {account: req.user.account});
 });
 
 module.exports = {frontView};

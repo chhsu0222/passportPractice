@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    title Login
+    meta(name='viewport', content='width=device-width, initial-scale=1, user-scalable=no')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css', integrity='sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ', crossorigin='anonymous')
+  body.centered-form
+    .container
+      h1 Startek
+      p Welcome to Bio-Server login page
+      form(method='post', action='/login')
+        .form-group
+          label Account
+          input.form-control(type='text', name='username', placeholder='Enter account')
+          small#emailHelp.form-text.text-muted We'll never share your account with anyone else.
+        .form-group
+          label Password
+          input.form-control(type='password', name='password', placeholder='Password')
+        button.btn.btn-primary(type='submit') Submit
