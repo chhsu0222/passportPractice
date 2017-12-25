@@ -9,6 +9,9 @@ html
     .container
       h1 Startek
       p Welcome to Bio-Server login page
+      #message
+       if message.length > 0
+         .alert.alert-danger #{message}
       form(method='post', action='/login')
         .form-group
           label Account

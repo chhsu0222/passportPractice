@@ -9,15 +9,18 @@ var frontView = express.Router();
 
 // Login
 frontView.get('/login', (req, res) => {
-	res.render('index');
+	res.render('index', {message: req.flash('message')});
 });
 
 passport.use(new LocalStrategy(
-  function (username, password, done) {
+	{
+		passReqToCallback: true
+	},
+  function (req, username, password, done) {
     User.findByCredentials(username, password).then((user) => {
       return done(null, user);
     }, (e) => {
-      return done(null, false);
+      return done(null, false, req.flash('message', 'Invalid account or password'));
     })
 
   }
@@ -34,7 +37,11 @@ passport.deserializeUser(function(id, done) {
 });
 
 frontView.post('/login',
-  passport.authenticate('local', { successRedirect:'/', failureRedirect:'/login'}),
+  passport.authenticate('local', {
+		successRedirect: '/',
+		failureRedirect: '/login',
+		failureFlash: true
+	}),
   (req, res) => {
 	  res.redirect('/');
   });

@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
+const flash = require('connect-flash');
 
 var {mongoose} = require('./db/mongoose');
 var {frontView} = require('./routes/index');
@@ -37,6 +38,9 @@ app.use(session({
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
+
+// Connect flash
+app.use(flash());
 
 app.use('/', frontView);
 app.use('/api', api);
